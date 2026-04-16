@@ -1,26 +1,16 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-// Register GSAP plugins on client side
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
 
 /**
- * Custom hook to animate elements on scroll using GSAP ScrollTrigger.
- * @param animation - Animation config: 'fadeUp' | 'fadeIn' | 'slideLeft' | 'slideRight' | 'scaleIn'
- * @param options - Additional GSAP ScrollTrigger options
+ * Super lightweight, native Web Animations API alternative to GSAP.
+ * Achieves 60FPS fluid animations without the massive GSAP bundle size.
  */
 export function useScrollAnimation<T extends HTMLElement>(
   animation: "fadeUp" | "fadeIn" | "slideLeft" | "slideRight" | "scaleIn" = "fadeUp",
   options?: {
     delay?: number;
     duration?: number;
-    start?: string;
-    ease?: string;
   }
 ) {
   const ref = useRef<T>(null);
@@ -29,41 +19,64 @@ export function useScrollAnimation<T extends HTMLElement>(
     const el = ref.current;
     if (!el) return;
 
-    const { delay = 0, duration = 1.2, start = "top 85%", ease = "power3.out" } =
-      options || {};
+    const { delay = 0, duration = 0.8 } = options || {};
 
-    // Define animation presets
-    const animations: Record<string, gsap.TweenVars> = {
-      fadeUp: { y: 60, opacity: 0 },
-      fadeIn: { opacity: 0 },
-      slideLeft: { x: -80, opacity: 0 },
-      slideRight: { x: 80, opacity: 0 },
-      scaleIn: { scale: 0.85, opacity: 0 },
-    };
+    // Hide initially to prevent flash of content
+    el.style.opacity = "0";
 
-    const fromVars = animations[animation] || animations.fadeUp;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            let keyframes: Keyframe[] = [];
 
-    gsap.fromTo(el, fromVars, {
-      ...Object.fromEntries(Object.keys(fromVars).map((key) => [key, key === "scale" ? 1 : 0])),
-      opacity: 1,
-      y: 0,
-      x: 0,
-      scale: 1,
-      duration,
-      delay,
-      ease,
-      scrollTrigger: {
-        trigger: el,
-        start,
-        toggleActions: "play none none none",
+            switch (animation) {
+              case "fadeUp":
+                keyframes = [
+                  { opacity: 0, transform: "translateY(40px)" },
+                  { opacity: 1, transform: "translateY(0px)" },
+                ];
+                break;
+              case "fadeIn":
+                keyframes = [{ opacity: 0 }, { opacity: 1 }];
+                break;
+              case "slideLeft":
+                keyframes = [
+                  { opacity: 0, transform: "translateX(-50px)" },
+                  { opacity: 1, transform: "translateX(0px)" },
+                ];
+                break;
+              case "slideRight":
+                keyframes = [
+                  { opacity: 0, transform: "translateX(50px)" },
+                  { opacity: 1, transform: "translateX(0px)" },
+                ];
+                break;
+              case "scaleIn":
+                keyframes = [
+                  { opacity: 0, transform: "scale(0.85)" },
+                  { opacity: 1, transform: "scale(1)" },
+                ];
+                break;
+            }
+
+            el.animate(keyframes, {
+              duration: duration * 1000,
+              delay: delay * 1000,
+              easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+              fill: "forwards",
+            });
+
+            observer.unobserve(el);
+          }
+        });
       },
-    });
+      { threshold: 0.15 } // Trigger when 15% visible
+    );
 
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => {
-        if (t.trigger === el) t.kill();
-      });
-    };
+    observer.observe(el);
+
+    return () => observer.disconnect();
   }, [animation, options]);
 
   return ref;

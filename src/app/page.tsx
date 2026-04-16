@@ -2,8 +2,6 @@
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Sections
 import HeroSection from "@/sections/HeroSection";
@@ -16,10 +14,7 @@ import Footer from "@/sections/Footer";
 // Components
 import MusicToggle from "@/components/MusicToggle";
 
-// Register GSAP plugins
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+
 
 /**
  * Main wedding invitation page.
@@ -46,9 +41,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (showSections) {
-      setTimeout(() => ScrollTrigger.refresh(), 500);
-    }
+    // Scroll triggers are now handled natively via WAAPI and Framer Motion viewport options
   }, [showSections]);
 
   return (
