@@ -1,26 +1,471 @@
 @import "tailwindcss";
 
+/* ═══════════════════════════════════════════════════════════════
+   🎨 LUXURY DARK WEDDING THEME — DESIGN SYSTEM
+   Deep emerald + gold + warm amber — Muslim wedding palette
+   ═══════════════════════════════════════════════════════════════ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ─── Core Dark Palette ─── */
+  --bg-deep: #1A0B12; /* Deep Burgundy/Maroon dark background */
+  --bg-dark: #240F18;
+  --bg-card: #301420;
+  --bg-card-hover: #3D1A28;
+  --bg-surface: #2A111C;
+
+  /* ─── Gold & Amber ─── */
+  --gold: #E5B782; /* Rose Gold */
+  --gold-light: #F8D9B6;
+  --gold-bright: #FFECD4;
+  --gold-dark: #C4925A;
+  --amber: #E88B80; /* Blush / Amber mix */
+  --amber-glow: rgba(232, 139, 128, 0.4);
+
+  /* ─── Emerald / Green -> Floral Red/Pink ─── */
+  --emerald: #842340; /* Burgundy */
+  --emerald-light: #B4395A; /* Dark Pink */
+  --emerald-dark: #4A1020; /* Deep Maroon */
+  --emerald-glow: rgba(180, 57, 90, 0.3);
+
+  /* ─── Text ─── */
+  --text-white: #F5F0E8;
+  --text-cream: #E8DCC8;
+  --text-muted: #8B9A8F;
+  --text-gold: #D4A843;
+
+  /* ─── Effects ─── */
+  --glow-gold: rgba(212, 168, 67, 0.4);
+  --glow-gold-strong: rgba(212, 168, 67, 0.7);
+  --glow-emerald: rgba(27, 94, 58, 0.3);
+  --shimmer-speed: 3s;
+
+  /* ─── Borders ─── */
+  --border-subtle: rgba(212, 168, 67, 0.12);
+  --border-gold: rgba(212, 168, 67, 0.3);
+  --border-glow: rgba(212, 168, 67, 0.5);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg-deep: var(--bg-deep);
+  --color-bg-dark: var(--bg-dark);
+  --color-bg-card: var(--bg-card);
+  --color-bg-surface: var(--bg-surface);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-bright: var(--gold-bright);
+  --color-gold-dark: var(--gold-dark);
+  --color-amber: var(--amber);
+  --color-emerald: var(--emerald);
+  --color-emerald-light: var(--emerald-light);
+  --color-emerald-dark: var(--emerald-dark);
+  --color-text-white: var(--text-white);
+  --color-text-cream: var(--text-cream);
+  --color-text-muted: var(--text-muted);
+  --color-text-gold: var(--text-gold);
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-cursive: 'Alex Brush', cursive;
+  --font-sans: 'Inter', system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ═══════════════════════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════════════════════ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-deep);
+  color: var(--text-cream);
+  font-family: 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CUSTOM SCROLLBAR — Gold on Dark
+   ═══════════════════════════════════════════════════════════════ */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--gold-dark), var(--gold));
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--gold-light); }
+
+/* ═══════════════════════════════════════════════════════════════
+   TYPOGRAPHY CLASSES
+   ═══════════════════════════════════════════════════════════════ */
+.font-heading {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.font-cursive {
+  font-family: 'Alex Brush', cursive;
+}
+
+.font-body {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ✨ GOLD GRADIENT TEXT — Animated shimmer
+   ═══════════════════════════════════════════════════════════════ */
+.text-gold-gradient {
+  background: linear-gradient(
+    90deg,
+    var(--gold-dark) 0%,
+    var(--gold-light) 25%,
+    var(--gold-bright) 50%,
+    var(--gold-light) 75%,
+    var(--gold-dark) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* Extra box so cursive descenders/ascenders aren't clipped */
+  padding: 0.1em 0.35em 0.1em 0.1em;
+  animation: shimmer-gold var(--shimmer-speed) ease-in-out infinite;
+}
+
+/* Cursive text must never clip its glyphs */
+.font-cursive.text-gold-gradient {
+  padding: 0.05em 0.5em 0.15em 0.1em;
+  display: inline-block;
+}
+
+@keyframes shimmer-gold {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+/* Non-animated gold gradient for smaller elements */
+.text-gold-static {
+  background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   🔮 GLASSMORPHISM CARD — Deep emerald glass
+   ═══════════════════════════════════════════════════════════════ */
+.glass-card {
+  background: linear-gradient(
+    135deg,
+    rgba(48, 20, 32, 0.9),
+    rgba(74, 16, 32, 0.15),
+    rgba(48, 20, 32, 0.85)
+  );
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid var(--border-gold);
+  box-shadow:
+    0 8px 40px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(212, 168, 67, 0.05),
+    inset 0 1px 0 rgba(212, 168, 67, 0.1);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  border-color: var(--border-glow);
+  box-shadow:
+    0 12px 50px rgba(0, 0, 0, 0.6),
+    0 0 50px rgba(212, 168, 67, 0.1),
+    inset 0 1px 0 rgba(212, 168, 67, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   💎 INVITATION CARD — Premium dark card with gold accents
+   ═══════════════════════════════════════════════════════════════ */
+.invitation-card {
+  background: linear-gradient(
+    145deg,
+    rgba(48, 20, 32, 0.95) 0%,
+    rgba(74, 16, 32, 0.12) 30%,
+    rgba(26, 11, 18, 0.95) 60%,
+    rgba(132, 35, 64, 0.08) 100%
+  );
+  border: 1.5px solid var(--border-gold);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.7),
+    0 0 60px rgba(212, 168, 67, 0.08),
+    inset 0 1px 0 rgba(212, 168, 67, 0.15),
+    inset 0 -1px 0 rgba(212, 168, 67, 0.05);
+}
+
+/* Animated border glow */
+.invitation-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 26px;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(212, 168, 67, 0.3) 50%,
+    transparent 70%
+  );
+  background-size: 300% 300%;
+  animation: border-glow 6s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes border-glow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Inner shimmer line */
+.invitation-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 168, 67, 0.04),
+    transparent
+  );
+  animation: card-shimmer 8s ease-in-out infinite;
+}
+
+@keyframes card-shimmer {
+  0% { left: -100%; }
+  50% { left: 150%; }
+  100% { left: -100%; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   🌟 GLOW EFFECTS
+   ═══════════════════════════════════════════════════════════════ */
+.glow-gold {
+  box-shadow:
+    0 0 20px var(--glow-gold),
+    0 0 60px rgba(212, 168, 67, 0.2),
+    0 0 100px rgba(212, 168, 67, 0.1);
+}
+
+.text-glow-gold {
+  text-shadow:
+    0 0 10px var(--glow-gold),
+    0 0 30px rgba(212, 168, 67, 0.3),
+    0 0 60px rgba(212, 168, 67, 0.15);
+}
+
+.text-glow-strong {
+  text-shadow:
+    0 0 15px var(--glow-gold-strong),
+    0 0 40px var(--glow-gold),
+    0 0 80px rgba(212, 168, 67, 0.2);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ✦ ORNAMENTAL DIVIDER
+   ═══════════════════════════════════════════════════════════════ */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ornament-divider::before,
+.ornament-divider::after {
+  content: '';
+  height: 1px;
+  width: 80px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   🏮 TIMELINE
+   ═══════════════════════════════════════════════════════════════ */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--gold-dark) 15%,
+    var(--gold) 50%,
+    var(--gold-dark) 85%,
+    transparent 100%
+  );
+  transform: translateX(-50%);
+  box-shadow: 0 0 15px var(--glow-gold);
+}
+
+.timeline-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--gold-bright), var(--gold));
+  border: 3px solid var(--bg-deep);
+  box-shadow:
+    0 0 20px var(--glow-gold),
+    0 0 40px rgba(212, 168, 67, 0.2);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   🎯 BUTTON — Gold luxury CTA
+   ═══════════════════════════════════════════════════════════════ */
+.btn-gold {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--bg-deep);
+  padding: 16px 44px;
+  border: none;
+  border-radius: 60px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 4px 20px rgba(212, 168, 67, 0.3),
+    0 0 40px rgba(212, 168, 67, 0.1);
+}
+
+.btn-gold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.7s ease;
+}
+
+.btn-gold:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 8px 35px rgba(212, 168, 67, 0.5),
+    0 0 60px rgba(212, 168, 67, 0.2),
+    0 0 100px rgba(212, 168, 67, 0.1);
+}
+
+.btn-gold:hover::before {
+  left: 100%;
+}
+
+.btn-gold:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   🌌 HERO BACKGROUND — Cinematic dark gradient
+   ═══════════════════════════════════════════════════════════════ */
+.hero-bg {
+  background: 
+    radial-gradient(ellipse at 50% 0%, rgba(132, 35, 64, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(229, 183, 130, 0.08) 0%, transparent 40%),
+    radial-gradient(ellipse at 20% 60%, rgba(74, 16, 32, 0.12) 0%, transparent 50%),
+    linear-gradient(180deg, #1A0B12 0%, #240F18 40%, #2A111C 70%, #1A0B12 100%);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ✨ ANIMATED BACKGROUNDS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Floating ambient orb */
+@keyframes float-orbit {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -20px) scale(1.05); }
+  50% { transform: translate(-10px, -40px) scale(0.95); }
+  75% { transform: translate(-25px, -15px) scale(1.02); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+@keyframes rotate-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Islamic geometric pattern overlay (CSS-only) */
+.pattern-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image:
+    repeating-linear-gradient(
+      0deg, transparent, transparent 40px,
+      rgba(212, 168, 67, 0.3) 40px, rgba(212, 168, 67, 0.3) 41px
+    ),
+    repeating-linear-gradient(
+      60deg, transparent, transparent 40px,
+      rgba(212, 168, 67, 0.3) 40px, rgba(212, 168, 67, 0.3) 41px
+    ),
+    repeating-linear-gradient(
+      120deg, transparent, transparent 40px,
+      rgba(212, 168, 67, 0.3) 40px, rgba(212, 168, 67, 0.3) 41px
+    );
+  pointer-events: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   📱 MOBILE OPTIMIZATIONS
+   ═══════════════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .timeline-line {
+    left: 20px;
+  }
+  .timeline-dot {
+    left: 20px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SELECTION & MISC
+   ═══════════════════════════════════════════════════════════════ */
+::selection {
+  background: rgba(212, 168, 67, 0.3);
+  color: var(--text-white);
+}
+
+/* Star sparkle animation for decorative elements */
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+/* Breathing glow for sections */
+@keyframes breathe {
+  0%, 100% { opacity: 0.05; }
+  50% { opacity: 0.12; }
 }
