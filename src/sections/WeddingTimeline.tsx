@@ -21,6 +21,7 @@ const events = [
       "The sacred union ceremony — a moment of devotion, love, and eternal promises before Allah (SWT). Venue: Srimannaryana Gardens, Miryalaguda.",
     icon: "🕌",
     color: "#D4A843",
+    mapUrl: "https://maps.app.goo.gl/4m9cNrVvqduUZcDJ8",
   },
   {
     title: "Walima",
@@ -30,6 +31,7 @@ const events = [
       "A grand dinner celebration to honour the newlyweds with joy, feasting, and togetherness. InshAllah. Venue: Suryapet Function Hall, Suryapet.",
     icon: "✨",
     color: "#E8913A",
+    mapUrl: "https://maps.app.goo.gl/xsjrS3ToBaVZLK7x8",
   },
 ];
 
@@ -188,9 +190,20 @@ function TimelineCard({ event }: { event: (typeof events)[number] }) {
             </p>
           </div>
         </div>
-        <p className="text-text-muted text-sm leading-relaxed">
+        <p className="text-text-muted text-sm leading-relaxed mb-4">
           {event.description}
         </p>
+        {event.mapUrl && (
+          <a
+            href={event.mapUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-gold text-sm font-sans tracking-wide hover:text-white transition-colors group/link mt-2"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+            <span className="border-b border-gold/30 group-hover/link:border-white/50 pb-0.5">Get Directions</span>
+          </a>
+        )}
       </div>
     </div>
   );

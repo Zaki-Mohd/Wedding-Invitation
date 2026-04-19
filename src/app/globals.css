@@ -469,3 +469,10 @@ body {
   0%, 100% { opacity: 0.05; }
   50% { opacity: 0.12; }
 }
+
+/* Shimmer border for couple portrait frame */
+@keyframes shimmer-border {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

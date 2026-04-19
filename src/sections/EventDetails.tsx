@@ -21,6 +21,7 @@ export default function EventDetails() {
       label: "Venue",
       value: "Srimannaryana Gardens",
       sub: "Miryalaguda",
+      mapUrl: "https://maps.app.goo.gl/4m9cNrVvqduUZcDJ8",
     },
   ];
 
@@ -95,6 +96,17 @@ export default function EventDetails() {
                   <p className="text-text-muted text-sm mt-1 font-sans">
                     {detail.sub}
                   </p>
+                )}
+                {detail.mapUrl && (
+                  <a
+                    href={detail.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 inline-flex items-center gap-2 px-6 py-2 rounded-full border border-gold/30 bg-gold/10 text-gold text-sm font-sans tracking-wide hover:bg-gold/20 transition-colors"
+                  >
+                    <span>Get Directions</span>
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                  </a>
                 )}
               </motion.div>
             ))}
