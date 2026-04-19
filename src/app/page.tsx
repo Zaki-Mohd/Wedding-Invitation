@@ -35,9 +35,6 @@ export default function Home() {
 
   const handleInviteComplete = useCallback(() => {
     setShowSections(true);
-    setTimeout(() => {
-      sectionsRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, 200);
   }, []);
 
   useEffect(() => {

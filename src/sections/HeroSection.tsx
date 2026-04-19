@@ -178,7 +178,7 @@ export default function HeroSection({
           variants={textVariants}
           className="font-cursive text-gold-gradient text-glow-strong leading-none mb-10 text-6xl sm:text-7xl md:text-8xl lg:text-9xl"
         >
-          Saniya
+          Sania
         </motion.h1>
 
         {/* Date */}

@@ -202,7 +202,7 @@ export default function RSVPSection() {
                 We can&apos;t wait to celebrate with you!
               </p>
               <p className="font-cursive text-2xl text-gold-gradient">
-                Althaf & Saniya
+                Althaf & Sania
               </p>
             </motion.div>
           )}

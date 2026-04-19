@@ -107,7 +107,7 @@ export default function Gallery() {
                     {img.label}
                   </p>
                   <p className="text-white/70 text-xs tracking-wide mt-1">
-                    Althaf & Saniya
+                    Althaf & Sania
                   </p>
                 </div>
               </motion.div>

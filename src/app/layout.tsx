@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Althaf & Saniya — Wedding Invitation",
+  title: "Althaf & Sania — Wedding Invitation",
   description:
-    "You are cordially invited to celebrate the union of Althaf & Saniya. Join us for this joyous occasion.",
+    "You are cordially invited to celebrate the union of Althaf & Sania. Join us for this joyous occasion.",
   openGraph: {
-    title: "Althaf & Saniya — Wedding Invitation",
+    title: "Althaf & Sania — Wedding Invitation",
     description: "Celebrating our love — Join us on our special day.",
     type: "website",
   },

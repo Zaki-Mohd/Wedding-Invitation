@@ -20,7 +20,7 @@ export default function EventDetails() {
       icon: "📍",
       label: "Venue",
       value: "Srimannaryana Gardens",
-      sub: "",
+      sub: "Miryalaguda",
     },
   ];
 

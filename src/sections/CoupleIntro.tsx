@@ -61,7 +61,7 @@ export default function CoupleIntro() {
             &
           </p>
           <h2 className="font-cursive text-5xl sm:text-6xl md:text-8xl text-gold-gradient text-glow-strong mb-10 py-2 pr-6 sm:pr-8 leading-tight">
-            Saniya
+            Sania
           </h2>
         </div>
 

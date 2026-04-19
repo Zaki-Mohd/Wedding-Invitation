@@ -18,7 +18,7 @@ const events = [
     time: "1:00 PM",
     date: "May 14, 2026",
     description:
-      "The sacred union ceremony — a moment of devotion, love, and eternal promises before Allah (SWT).",
+      "The sacred union ceremony — a moment of devotion, love, and eternal promises before Allah (SWT). Venue: Srimannaryana Gardens, Miryalaguda.",
     icon: "🕌",
     color: "#D4A843",
   },
@@ -27,7 +27,7 @@ const events = [
     time: "8:00 PM",
     date: "May 15, 2026",
     description:
-      "A grand dinner celebration to honour the newlyweds with joy, feasting, and togetherness. InshAllah.",
+      "A grand dinner celebration to honour the newlyweds with joy, feasting, and togetherness. InshAllah. Venue: Suryapet Function Hall, Suryapet.",
     icon: "✨",
     color: "#E8913A",
   },

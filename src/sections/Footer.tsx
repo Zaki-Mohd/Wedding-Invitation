@@ -47,7 +47,7 @@ export default function Footer() {
         </p>
 
         <p className="font-cursive text-[3.5rem] sm:text-[4.5rem] md:text-[5.5rem] text-gold-gradient text-glow-strong mb-4 py-2 pr-4 sm:pr-8 leading-tight">
-          Althaf & Saniya
+          Althaf & Sania
         </p>
         <p className="text-text-muted text-sm leading-relaxed mb-10" style={{ maxWidth: "380px" }}>
           We are excited to begin this beautiful journey together.

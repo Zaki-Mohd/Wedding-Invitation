@@ -148,7 +148,7 @@ export default function InvitationCard({
                       &
                     </p>
                     <h2 className="font-cursive text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gold-gradient text-glow-strong mb-10 py-2 pr-4 sm:pr-8">
-                      Saniya
+                      Sania
                     </h2>
 
                     <div className="ornament-divider mb-10 opacity-40">
